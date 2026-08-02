@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Login — Beacon Help Center</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="admin.css">
+</head>
+<body data-theme="dark" style="background:var(--deep-sea);">
+<div class="login-shell">
+  <div class="beam-sweep" aria-hidden="true"></div>
+  <div class="login-card" data-aos="fade-up">
+    <a href="index.html" class="brand-mark justify-content-center mb-2" style="color:#fff;"><span class="lamp"></span> Beacon</a>
+    <p class="text-center small mb-4" style="color:rgba(234,242,250,.65)">Admin Dashboard Login</p>
+
+    <div id="loginAlert" class="alert alert-danger py-2 small d-none" role="alert"></div>
+
+    <form id="loginForm">
+      <div class="mb-3">
+        <label class="form-label small text-white-50">Username</label>
+        <input type="text" class="form-control" id="loginUser" placeholder="admin" autocomplete="username" required>
+      </div>
+      <div class="mb-3">
+        <label class="form-label small text-white-50">Password</label>
+        <div class="input-group">
+          <input type="password" class="form-control" id="loginPass" placeholder="••••••••" autocomplete="current-password" required>
+          <button class="btn btn-outline-light" type="button" id="togglePass"><i class="fa-regular fa-eye"></i></button>
+        </div>
+      </div>
+      <div class="form-check mb-3">
+        <input class="form-check-input" type="checkbox" id="rememberMe">
+        <label class="form-check-label small text-white-50" for="rememberMe">Keep me signed in</label>
+      </div>
+      <button type="submit" class="btn btn-beacon w-100 ripple">Sign in <i class="fa-solid fa-arrow-right-to-bracket ms-1"></i></button>
+    </form>
+    <p class="text-center small mt-4" style="color:rgba(234,242,250,.5)">
+      Demo credentials — <span class="font-monospace">admin</span> / <span class="font-monospace">admin123</span>
+    </p>
+    <a href="index.html" class="d-block text-center small mt-2" style="color:var(--beacon-amber);"><i class="fa-solid fa-arrow-left me-1"></i>Back to Help Center</a>
+  </div>
+</div>
+
+<div class="toast-stack" id="toastStack"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>

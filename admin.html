@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard — Beacon Help Center</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+<div class="toast-stack" id="toastStack"></div>
+
+<div class="admin-shell">
+  <!-- Sidebar -->
+  <aside class="admin-sidebar" id="adminSidebar">
+    <a href="index.html" class="brand-mark px-3 py-2" style="color:#fff;"><span class="lamp"></span> Beacon</a>
+    <nav class="admin-nav">
+      <a href="#" class="admin-nav-link active" data-view="dashboard"><i class="fa-solid fa-gauge-high"></i> Dashboard</a>
+      <a href="#" class="admin-nav-link" data-view="faqs"><i class="fa-solid fa-list-check"></i> Manage FAQs</a>
+      <a href="#" class="admin-nav-link" data-view="categories"><i class="fa-solid fa-tags"></i> Categories</a>
+      <a href="#" class="admin-nav-link" data-view="messages"><i class="fa-solid fa-envelope"></i> <span class="nav-label">Messages</span> <span class="msg-badge d-none" id="messageBadge">0</span></a>
+      <a href="#" class="admin-nav-link" data-view="importExport"><i class="fa-solid fa-file-import"></i> Import / Export</a>
+    </nav>
+    <div class="mt-auto p-3">
+      <a href="index.html" class="admin-nav-link"><i class="fa-solid fa-arrow-left"></i> View site</a>
+      <button class="admin-nav-link w-100 text-start border-0 bg-transparent" id="logoutBtn"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <main class="admin-main">
+    <header class="admin-topbar">
+      <button class="icon-btn d-lg-none" id="sidebarToggle"><i class="fa-solid fa-bars"></i></button>
+      <h5 class="mb-0" id="viewTitle">Dashboard</h5>
+      <div class="d-flex align-items-center gap-2 ms-auto">
+        <button class="icon-btn theme-toggle" id="themeToggle" title="Toggle dark mode"><i class="fa-solid fa-moon"></i><i class="fa-solid fa-sun"></i></button>
+        <span class="admin-avatar"><i class="fa-solid fa-user-shield"></i></span>
+      </div>
+    </header>
+
+    <div class="admin-content">
+
+      <!-- ============ DASHBOARD VIEW ============ -->
+      <section id="view-dashboard" class="admin-view">
+        <div class="row g-3 mb-4">
+          <div class="col-6 col-lg-3">
+            <div class="stat-card"><i class="fa-solid fa-comments"></i><div><b id="cardTotalFaqs">0</b><span>Total FAQs</span></div></div>
+          </div>
+          <div class="col-6 col-lg-3">
+            <div class="stat-card"><i class="fa-solid fa-tags"></i><div><b id="cardTotalCats">0</b><span>Categories</span></div></div>
+          </div>
+          <div class="col-6 col-lg-3">
+            <div class="stat-card"><i class="fa-solid fa-eye"></i><div><b id="cardTotalViews">0</b><span>Total Views</span></div></div>
+          </div>
+          <div class="col-6 col-lg-3">
+            <div class="stat-card"><i class="fa-solid fa-thumbs-up"></i><div><b id="cardTotalHelpful">0</b><span>Helpful Votes</span></div></div>
+          </div>
+        </div>
+        <div class="row g-3">
+          <div class="col-lg-6">
+            <div class="admin-panel">
+              <h6>FAQs by category</h6>
+              <canvas id="categoryChart" height="220"></canvas>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="admin-panel">
+              <h6>Views per category</h6>
+              <canvas id="viewsChart" height="220"></canvas>
+            </div>
+          </div>
+        </div>
+        <div class="admin-panel mt-3">
+          <h6>Most viewed FAQs</h6>
+          <div class="table-responsive">
+            <table class="table admin-table align-middle" id="topFaqsTable">
+              <thead><tr><th>Question</th><th>Category</th><th>Views</th><th>Helpful</th></tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ MANAGE FAQS VIEW ============ -->
+      <section id="view-faqs" class="admin-view d-none">
+        <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+          <div class="input-group" style="max-width:320px;">
+            <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
+            <input type="text" class="form-control" id="adminFaqSearch" placeholder="Search FAQs…">
+          </div>
+          <button class="btn btn-beacon ripple" id="addFaqBtn"><i class="fa-solid fa-plus me-1"></i>Add FAQ</button>
+        </div>
+        <div class="admin-panel p-0">
+          <div class="table-responsive">
+            <table class="table admin-table align-middle mb-0" id="faqTable">
+              <thead><tr><th>Question</th><th>Category</th><th>Views</th><th>Helpful</th><th>Date</th><th class="text-end">Actions</th></tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ CATEGORIES VIEW ============ -->
+      <section id="view-categories" class="admin-view d-none">
+        <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+          <p class="text-muted mb-0 small">Categories organize FAQs across the help center.</p>
+          <button class="btn btn-beacon ripple" id="addCategoryBtn"><i class="fa-solid fa-plus me-1"></i>Add Category</button>
+        </div>
+        <div class="row g-3" id="categoryManageGrid"></div>
+      </section>
+
+      <!-- ============ MESSAGES VIEW ============ -->
+      <section id="view-messages" class="admin-view d-none">
+        <p class="text-muted mb-3 small">Submissions from the Contact Support form on the site.</p>
+        <div class="admin-panel p-0">
+          <div class="table-responsive">
+            <table class="table admin-table align-middle mb-0" id="messagesTable">
+              <thead><tr><th>From</th><th>Subject</th><th>Message</th><th>Status</th><th>Date</th><th class="text-end">Actions</th></tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ IMPORT / EXPORT VIEW ============ -->
+      <section id="view-importExport" class="admin-view d-none">
+        <div class="row g-3">
+          <div class="col-lg-6">
+            <div class="admin-panel">
+              <h6><i class="fa-solid fa-file-export me-2"></i>Export FAQs</h6>
+              <p class="text-muted small">Download all FAQs and categories as a JSON file for backup or migration.</p>
+              <button class="btn btn-beacon ripple" id="exportBtn"><i class="fa-solid fa-download me-1"></i>Export as JSON</button>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="admin-panel">
+              <h6><i class="fa-solid fa-file-import me-2"></i>Import FAQs</h6>
+              <p class="text-muted small">Upload a previously exported JSON file. This will merge with existing FAQs.</p>
+              <input type="file" class="form-control" id="importFile" accept="application/json">
+              <button class="btn btn-outline-beacon-solid mt-2" id="importBtn"><i class="fa-solid fa-upload me-1"></i>Import</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+</div>
+
+<!-- FAQ Add/Edit Modal -->
+<div class="modal fade" id="faqModal" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content admin-modal">
+      <div class="modal-header">
+        <h5 class="modal-title" id="faqModalLabel">Add FAQ</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <form id="faqForm">
+          <input type="hidden" id="faqId">
+          <div class="row g-3">
+            <div class="col-12">
+              <label class="form-label small">Question</label>
+              <input type="text" class="form-control" id="faqQuestion" required>
+            </div>
+            <div class="col-12">
+              <label class="form-label small">Answer</label>
+              <textarea class="form-control" id="faqAnswer" rows="4" required></textarea>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label small">Category</label>
+              <select class="form-select" id="faqCategory"></select>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label small">Tags (comma separated)</label>
+              <input type="text" class="form-control" id="faqTags" placeholder="billing, refund">
+            </div>
+          </div>
+        </form>
+        <div class="preview-box mt-3" id="faqPreview"></div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button class="btn btn-beacon ripple" id="saveFaqBtn">Save FAQ</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Category Modal -->
+<div class="modal fade" id="categoryModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content admin-modal">
+      <div class="modal-header">
+        <h5 class="modal-title">Add Category</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <label class="form-label small">Category name</label>
+        <input type="text" class="form-control mb-3" id="categoryName" placeholder="e.g. Shipping">
+        <label class="form-label small">Font Awesome icon class</label>
+        <input type="text" class="form-control" id="categoryIcon" placeholder="fa-truck" value="fa-circle-question">
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button class="btn btn-beacon ripple" id="saveCategoryBtn">Save Category</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Delete confirm -->
+<div class="modal fade" id="confirmModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-sm">
+    <div class="modal-content admin-modal">
+      <div class="modal-body text-center py-4">
+        <i class="fa-solid fa-triangle-exclamation text-danger fs-2 mb-2"></i>
+        <p class="mb-3" id="confirmMessage">Delete this item?</p>
+        <div class="d-flex gap-2 justify-content-center">
+          <button class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button class="btn btn-danger" id="confirmActionBtn">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js"></script>
+<script>
+  // Some networks/firewalls block cdnjs — if Chart.js didn't load, try a
+  // second CDN before giving up. admin.js also guards against Chart still
+  // being undefined so the rest of the dashboard keeps working either way.
+  if (typeof Chart === "undefined") {
+    document.write('<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"><\/script>');
+  }
+</script>
+<script src="admin.js"></script>
+</body>
+</html>

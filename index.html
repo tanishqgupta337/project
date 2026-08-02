@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beacon Help Center — Answers, Fast</title>
+<meta name="description" content="Search FAQs, browse help topics by category, and reach support — all in one place.">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0B1E33">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2245%22 fill=%22%23FFB238%22/></svg>">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+
+<!-- Bootstrap 5 -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+<!-- Font Awesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+<!-- AOS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.css" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ============ Loading Screen ============ -->
+<div id="loading-screen" aria-hidden="true">
+  <div class="beacon-loader">
+    <div class="ring"></div><div class="ring"></div><div class="ring"></div>
+    <div class="core"></div>
+  </div>
+</div>
+
+<div id="reading-progress"></div>
+<div class="custom-cursor" id="customCursor"></div>
+
+<!-- ============ Toasts ============ -->
+<div class="toast-stack" id="toastStack" aria-live="polite" aria-atomic="true"></div>
+
+<!-- ============ Navbar ============ -->
+<nav class="navbar navbar-beacon navbar-expand-lg">
+  <div class="container">
+    <a class="brand-mark" href="#home"><span class="lamp"></span> Beacon</a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMain">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navMain">
+      <ul class="navbar-nav mx-auto gap-1 mt-3 mt-lg-0">
+        <li class="nav-item"><a class="nav-link active" href="#home" data-i18n="nav_home">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#categories" data-i18n="nav_categories">Categories</a></li>
+        <li class="nav-item"><a class="nav-link" href="#faqs" data-i18n="nav_faqs">FAQs</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact" data-i18n="nav_contact">Contact</a></li>
+        <li class="nav-item"><a class="nav-link" href="login.html" data-i18n="nav_admin">Admin</a></li>
+      </ul>
+      <div class="d-flex align-items-center gap-2 mt-3 mt-lg-0">
+        <select id="langSwitch" class="form-select form-select-sm" style="width:auto;border-radius:999px;" aria-label="Language">
+          <option value="en">EN</option>
+          <option value="hi">हिं</option>
+        </select>
+        <button class="icon-btn theme-toggle" id="themeToggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+          <i class="fa-solid fa-moon"></i><i class="fa-solid fa-sun"></i>
+        </button>
+        <button class="icon-btn" id="bookmarksBtn" aria-label="Saved FAQs" title="Saved FAQs" data-bs-toggle="offcanvas" data-bs-target="#savedPanel">
+          <i class="fa-solid fa-bookmark"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ Hero ============ -->
+<header class="hero" id="home">
+  <div class="beam-sweep" aria-hidden="true"></div>
+  <div class="container position-relative">
+    <div class="row align-items-center">
+      <div class="col-lg-8 mx-auto text-center" data-aos="fade-up">
+        <span class="eyebrow">HELP CENTER</span>
+        <h1 class="mt-2 mb-3" data-i18n="hero_title">Find your way to an answer</h1>
+        <p class="lede mx-auto" data-i18n="hero_sub">Search 35+ guides across account, billing, orders, security and more — or ask our assistant directly.</p>
+
+        <div class="search-beacon mx-auto mt-4" data-aos="fade-up" data-aos-delay="100">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" id="searchInput" placeholder="Search for answers… try 'refund' or 'password'" autocomplete="off" aria-label="Search FAQs">
+          <button class="mic-btn" id="voiceSearchBtn" title="Search by voice" aria-label="Voice search"><i class="fa-solid fa-microphone"></i></button>
+          <div class="suggestions-panel" id="suggestionsPanel"></div>
+        </div>
+
+        <div class="hero-stats justify-content-center">
+          <div class="stat"><b id="statTotalFaqs">0</b><span data-i18n="stat_articles">Articles</span></div>
+          <div class="stat"><b id="statTotalCats">0</b><span data-i18n="stat_categories">Categories</span></div>
+          <div class="stat"><b id="statTotalViews">0</b><span data-i18n="stat_views">Views logged</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ Categories ============ -->
+<section class="section-pad" id="categories">
+  <div class="container">
+    <div class="section-head" data-aos="fade-up">
+      <span class="eyebrow" data-i18n="cat_eyebrow">BROWSE</span>
+      <h2 class="mt-2" data-i18n="cat_title">Explore by topic</h2>
+      <p class="text-muted" data-i18n="cat_sub">Pick a category to jump straight to relevant articles.</p>
+    </div>
+    <div class="row g-3" id="categoryGrid"></div>
+  </div>
+</section>
+
+<!-- ============ FAQ System ============ -->
+<section class="section-pad" id="faqs" style="padding-top:0;">
+  <div class="container">
+    <div class="section-head" data-aos="fade-up">
+      <span class="eyebrow" data-i18n="faq_eyebrow">KNOWLEDGE BASE</span>
+      <h2 class="mt-2" data-i18n="faq_title">Frequently asked questions</h2>
+    </div>
+
+    <div class="glass-panel mb-4" data-aos="fade-up">
+      <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
+        <div class="d-flex flex-wrap gap-2" id="filterChips"></div>
+        <div class="d-flex align-items-center gap-2">
+          <select id="sortSelect" class="form-select form-select-sm" style="width:auto;">
+            <option value="newest" data-i18n="sort_newest">Newest</option>
+            <option value="oldest" data-i18n="sort_oldest">Oldest</option>
+            <option value="views" data-i18n="sort_views">Most Viewed</option>
+            <option value="helpful" data-i18n="sort_helpful">Most Helpful</option>
+          </select>
+          <button class="filter-chip" id="resetFilters" data-i18n="reset_filters">Reset</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="resultsMeta" class="text-muted small mb-3 font-monospace"></div>
+    <div id="skeletonWrap"></div>
+    <div class="accordion faq-accordion" id="faqAccordion"></div>
+    <div class="no-results d-none" id="noResults">
+      <div class="lamp-off"><i class="fa-regular fa-lightbulb"></i></div>
+      <h5 class="mt-3" data-i18n="no_results_title">No FAQ found</h5>
+      <p class="text-muted" data-i18n="no_results_sub">Try a different keyword or reset your filters.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Recently viewed ============ -->
+<section class="section-pad" style="padding-top:0;" id="recentSection">
+  <div class="container">
+    <div class="section-head" data-aos="fade-up">
+      <span class="eyebrow">HISTORY</span>
+      <h2 class="mt-2" data-i18n="recent_title">Recently viewed</h2>
+    </div>
+    <div class="row g-3" id="recentGrid"></div>
+  </div>
+</section>
+
+<!-- ============ Contact ============ -->
+<section class="section-pad" id="contact">
+  <div class="container">
+    <div class="row g-4 align-items-start">
+      <div class="col-lg-5" data-aos="fade-right">
+        <span class="eyebrow" data-i18n="contact_eyebrow">STILL STUCK?</span>
+        <h2 class="mt-2 mb-3" data-i18n="contact_title">Contact support</h2>
+        <p class="text-muted" data-i18n="contact_sub">Can't find what you're looking for? Send us a message and our team will get back within one business day.</p>
+        <div class="d-flex align-items-center gap-2 mt-4">
+          <span class="icon-btn"><i class="fa-solid fa-envelope"></i></span>
+          <span class="text-muted">support@beaconhelp.example</span>
+        </div>
+      </div>
+      <div class="col-lg-7" data-aos="fade-left">
+        <div class="contact-card">
+          <form id="contactForm" novalidate>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label small" data-i18n="form_name">Name</label>
+                <input type="text" class="form-control" id="cfName" required>
+                <div class="invalid-feedback" data-i18n="err_required">This field is required.</div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label small" data-i18n="form_email">Email</label>
+                <input type="email" class="form-control" id="cfEmail" required>
+                <div class="invalid-feedback" data-i18n="err_email">Enter a valid email address.</div>
+              </div>
+              <div class="col-12">
+                <label class="form-label small" data-i18n="form_subject">Subject</label>
+                <input type="text" class="form-control" id="cfSubject" required>
+                <div class="invalid-feedback" data-i18n="err_required">This field is required.</div>
+              </div>
+              <div class="col-12">
+                <label class="form-label small" data-i18n="form_message">Message</label>
+                <textarea class="form-control" id="cfMessage" rows="4" required></textarea>
+                <div class="invalid-feedback">Please enter at least 10 characters.</div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="cfNewsletter">
+                  <label class="form-check-label small text-muted" for="cfNewsletter" data-i18n="form_newsletter">Subscribe to product updates</label>
+                </div>
+                <button type="submit" class="btn btn-beacon ripple" data-i18n="form_submit">Send message</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Footer ============ -->
+<footer class="footer-beacon">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-4">
+        <span class="brand-mark" style="color:#fff;"><span class="lamp"></span> Beacon</span>
+        <p class="mt-3 small">A calm, dependable help center for every product question — built for a final-year showcase, styled for production.</p>
+        <div class="mt-3">
+          <a href="#" class="social-dot d-inline-flex" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#" class="social-dot d-inline-flex" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" class="social-dot d-inline-flex" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="col-6 col-lg-2">
+        <h6 data-i18n="footer_product">Product</h6>
+        <a href="#home" data-i18n="nav_home">Home</a>
+        <a href="#categories" data-i18n="nav_categories">Categories</a>
+        <a href="#faqs" data-i18n="nav_faqs">FAQs</a>
+      </div>
+      <div class="col-6 col-lg-2">
+        <h6 data-i18n="footer_company">Company</h6>
+        <a href="about.html" data-i18n="footer_about">About</a>
+        <a href="index.html#contact" data-i18n="nav_contact">Contact</a>
+        <a href="login.html" data-i18n="nav_admin">Admin</a>
+      </div>
+      <div class="col-6 col-lg-2">
+        <h6 data-i18n="footer_legal">Legal</h6>
+        <a href="privacy.html" data-i18n="footer_privacy">Privacy Policy</a>
+        <a href="terms.html" data-i18n="footer_terms">Terms &amp; Conditions</a>
+      </div>
+      <div class="col-6 col-lg-2">
+        <h6 data-i18n="footer_newsletter">Newsletter</h6>
+        <form id="newsletterForm" class="d-flex gap-1 mt-2">
+          <input type="email" class="form-control form-control-sm" placeholder="you@email.com" id="newsEmail" required>
+          <button class="btn btn-beacon btn-sm" type="submit"><i class="fa-solid fa-paper-plane"></i></button>
+        </form>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Beacon Help Center. All rights reserved.</span>
+      <span data-i18n="footer_tagline">Built with HTML, CSS &amp; vanilla JS — no backend required.</span>
+    </div>
+  </div>
+</footer>
+
+<button id="back-to-top" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
+
+
+<!-- ============ Saved / Bookmarks Offcanvas ============ -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="savedPanel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" data-i18n="saved_title">Saved &amp; Favorite FAQs</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+  </div>
+  <div class="offcanvas-body" id="savedList"></div>
+</div>
+
+<!-- ============ FAQ detail modal (for share/print/pdf/rating) ============ -->
+<div class="modal fade" id="faqDetailModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content" style="background:var(--surface); color:var(--text); border-radius:16px;">
+      <div class="modal-header" style="border-color:var(--border);">
+        <h5 class="modal-title" id="faqModalTitle">FAQ</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body" id="faqModalBody"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

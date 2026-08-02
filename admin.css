@@ -1,0 +1,90 @@
+/* ==========================================================================
+   admin.css — Admin Dashboard & Login styles (extends style.css tokens)
+   ========================================================================== */
+
+/* ---------- Login ---------- */
+.login-shell{
+  min-height: 100vh; display:flex; align-items:center; justify-content:center;
+  position: relative; overflow:hidden; padding: 2rem 1rem;
+  background: radial-gradient(120% 140% at 15% 0%, var(--deep-sea-2), var(--deep-sea) 60%);
+}
+.login-card{
+  position: relative; z-index: 2; width: 100%; max-width: 400px;
+  background: rgba(18,40,65,.65); backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,.12); border-radius: 22px;
+  padding: 2.4rem 2rem; box-shadow: 0 20px 50px -20px rgba(0,0,0,.6);
+}
+.login-card .form-control{ background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.16); color:#fff; }
+.login-card .form-control:focus{ background: rgba(255,255,255,.12); border-color: var(--beacon-amber); box-shadow: 0 0 0 3px rgba(255,178,56,.25); }
+.login-card .input-group-text{ display:none; }
+
+/* ---------- Admin shell / sidebar ---------- */
+.admin-shell{ display:flex; min-height:100vh; background: var(--bg); }
+.admin-sidebar{
+  width: 250px; flex-shrink:0; background: var(--deep-sea); color:#fff;
+  display:flex; flex-direction:column; position: sticky; top:0; height:100vh;
+  transition: transform .3s ease; z-index: 1050;
+}
+.admin-sidebar .brand-mark{ text-decoration:none; }
+.admin-nav{ padding: .5rem; display:flex; flex-direction:column; gap:.2rem; }
+.admin-nav-link{
+  color: rgba(234,242,250,.75); padding: .65rem .9rem; border-radius: 10px;
+  display:flex; align-items:center; gap:.7rem; font-size:.9rem; cursor:pointer;
+}
+.msg-badge{
+  margin-left:auto; background: var(--coral); color:#fff; font-size:.68rem; font-weight:700;
+  min-width:20px; height:20px; border-radius:999px; display:flex; align-items:center; justify-content:center; padding:0 .35rem;
+}
+.admin-nav-link i{ width:18px; text-align:center; }
+.admin-nav-link:hover{ background: rgba(255,255,255,.06); color:#fff; }
+.admin-nav-link.active{ background: rgba(255,178,56,.16); color: var(--beacon-amber); font-weight:600; }
+
+.admin-main{ flex:1; min-width:0; }
+.admin-topbar{
+  position: sticky; top:0; z-index: 900; background: var(--surface); border-bottom: 1px solid var(--border);
+  padding: .9rem 1.4rem; display:flex; align-items:center; gap: 1rem;
+}
+.admin-avatar{ width:38px; height:38px; border-radius:50%; background: var(--beacon-amber); color: var(--deep-sea); display:flex; align-items:center; justify-content:center; }
+.admin-content{ padding: 1.4rem; }
+
+/* ---------- Stat cards ---------- */
+.stat-card{
+  background: var(--surface); border:1px solid var(--border); border-radius: 16px;
+  padding: 1.1rem 1.2rem; display:flex; align-items:center; gap:.9rem; height:100%;
+}
+.stat-card i{ font-size:1.3rem; width:46px; height:46px; border-radius:12px; display:flex; align-items:center; justify-content:center; background: rgba(255,178,56,.15); color: var(--beacon-amber-2); }
+.stat-card b{ display:block; font-family: var(--font-display); font-size:1.4rem; }
+.stat-card span{ font-size:.78rem; color: var(--text-muted); }
+
+.admin-panel{ background: var(--surface); border:1px solid var(--border); border-radius: 16px; padding: 1.2rem; }
+.admin-panel h6{ font-family: var(--font-display); margin-bottom:1rem; }
+
+/* ---------- Tables ---------- */
+.admin-table{ color: var(--text); margin-bottom:0; }
+.admin-table thead th{ font-size:.72rem; text-transform:uppercase; letter-spacing:.05em; color: var(--text-muted); border-color: var(--border); font-weight:600; }
+.admin-table td, .admin-table th{ border-color: var(--border); vertical-align:middle; }
+.admin-table td.q-cell{ max-width: 320px; }
+.row-action-btn{ border:1px solid var(--border); background:transparent; color: var(--text-muted); width:32px; height:32px; border-radius:8px; }
+.row-action-btn:hover{ background: var(--beacon-amber); color: var(--deep-sea); border-color: var(--beacon-amber); }
+.row-action-btn.danger:hover{ background: var(--coral); border-color: var(--coral); color:#fff; }
+.status-pill{ font-size:.7rem; font-weight:700; padding:.25rem .6rem; border-radius:999px; text-transform:uppercase; letter-spacing:.03em; }
+.status-pill.new{ background: rgba(255,107,107,.15); color: var(--coral); }
+.status-pill.read{ background: rgba(255,178,56,.15); color: var(--beacon-amber-2); }
+.status-pill.replied{ background: rgba(53,201,155,.15); color: var(--mint); }
+
+/* ---------- Category management ---------- */
+.category-manage-card{ background: var(--surface); border:1px solid var(--border); border-radius:16px; padding:1.2rem; display:flex; align-items:center; gap:.9rem; }
+.category-manage-card .cat-icon{ width:44px; height:44px; border-radius:12px; background: linear-gradient(135deg, var(--beacon-amber), var(--beacon-amber-2)); color: var(--deep-sea); display:flex; align-items:center; justify-content:center; }
+
+/* ---------- Modal (admin) ---------- */
+.admin-modal{ background: var(--surface); color: var(--text); border-radius:18px; border:1px solid var(--border); }
+.admin-modal .modal-header, .admin-modal .modal-footer{ border-color: var(--border); }
+.preview-box{ background: var(--bg); border:1px dashed var(--border); border-radius:12px; padding: .9rem 1rem; font-size:.88rem; }
+
+.btn-outline-beacon-solid{ border:1.5px solid var(--beacon-amber); color: var(--beacon-amber-2); background:transparent; border-radius:999px; padding:.55rem 1.2rem; font-weight:600; }
+.btn-outline-beacon-solid:hover{ background: var(--beacon-amber); color: var(--deep-sea); }
+
+@media (max-width: 991px){
+  .admin-sidebar{ position: fixed; left:0; top:0; transform: translateX(-100%); }
+  .admin-sidebar.open{ transform:none; }
+}

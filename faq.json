@@ -1,0 +1,501 @@
+{
+  "categories": [
+    {
+      "id": "general",
+      "name": "General",
+      "icon": "fa-compass"
+    },
+    {
+      "id": "account",
+      "name": "Account",
+      "icon": "fa-user-gear"
+    },
+    {
+      "id": "payment",
+      "name": "Payment",
+      "icon": "fa-credit-card"
+    },
+    {
+      "id": "orders",
+      "name": "Orders",
+      "icon": "fa-box"
+    },
+    {
+      "id": "technical",
+      "name": "Technical",
+      "icon": "fa-screwdriver-wrench"
+    },
+    {
+      "id": "privacy",
+      "name": "Privacy",
+      "icon": "fa-user-shield"
+    },
+    {
+      "id": "security",
+      "name": "Security",
+      "icon": "fa-shield-halved"
+    },
+    {
+      "id": "support",
+      "name": "Support",
+      "icon": "fa-life-ring"
+    }
+  ],
+  "faqs": [
+    {
+      "id": 1,
+      "question": "What is Beacon Help Center?",
+      "answer": "Beacon is a self-serve help center where you can search for answers, browse guides by category, and reach our support team if you're still stuck.",
+      "category": "general",
+      "tags": [
+        "intro",
+        "overview"
+      ],
+      "date": "2026-01-05",
+      "helpful": 42,
+      "views": 980
+    },
+    {
+      "id": 2,
+      "question": "Is Beacon free to use?",
+      "answer": "Yes. Browsing articles, searching the help center, and contacting support are completely free for every visitor.",
+      "category": "general",
+      "tags": [
+        "pricing",
+        "free"
+      ],
+      "date": "2026-01-06",
+      "helpful": 31,
+      "views": 640
+    },
+    {
+      "id": 3,
+      "question": "Which browsers are supported?",
+      "answer": "Beacon works on the latest versions of Chrome, Firefox, Safari, and Edge. We recommend keeping your browser updated for the best experience.",
+      "category": "general",
+      "tags": [
+        "browser",
+        "compatibility"
+      ],
+      "date": "2026-01-07",
+      "helpful": 18,
+      "views": 410
+    },
+    {
+      "id": 4,
+      "question": "Can I use Beacon on my phone?",
+      "answer": "Absolutely — the help center is fully responsive and can even be installed as an app on your home screen.",
+      "category": "general",
+      "tags": [
+        "mobile",
+        "pwa"
+      ],
+      "date": "2026-01-08",
+      "helpful": 27,
+      "views": 505
+    },
+    {
+      "id": 5,
+      "question": "How do I switch the interface language?",
+      "answer": "Use the language switcher in the navbar to toggle between English and Hindi. Your choice is remembered on this device.",
+      "category": "general",
+      "tags": [
+        "language",
+        "hindi"
+      ],
+      "date": "2026-01-09",
+      "helpful": 15,
+      "views": 300
+    },
+    {
+      "id": 6,
+      "question": "How do I create an account?",
+      "answer": "Click Sign Up in the navbar, enter your email and a password, and confirm your email address to activate the account.",
+      "category": "account",
+      "tags": [
+        "signup",
+        "register"
+      ],
+      "date": "2026-01-10",
+      "helpful": 39,
+      "views": 720
+    },
+    {
+      "id": 7,
+      "question": "How do I reset my password?",
+      "answer": "Go to the login screen and select Forgot Password. We'll email you a secure link to set a new password.",
+      "category": "account",
+      "tags": [
+        "password",
+        "reset"
+      ],
+      "date": "2026-01-11",
+      "helpful": 55,
+      "views": 1120
+    },
+    {
+      "id": 8,
+      "question": "How do I update my profile details?",
+      "answer": "Open Account Settings from your profile menu, edit the fields you'd like to change, and click Save.",
+      "category": "account",
+      "tags": [
+        "profile",
+        "settings"
+      ],
+      "date": "2026-01-12",
+      "helpful": 21,
+      "views": 380
+    },
+    {
+      "id": 9,
+      "question": "How do I delete my account?",
+      "answer": "Go to Account Settings, scroll to Danger Zone, and select Delete Account. This action is permanent and removes all your data.",
+      "category": "account",
+      "tags": [
+        "delete",
+        "close account"
+      ],
+      "date": "2026-01-13",
+      "helpful": 24,
+      "views": 460
+    },
+    {
+      "id": 10,
+      "question": "Can I merge two accounts?",
+      "answer": "Account merging isn't automated yet. Contact support with both account emails and we'll assist manually.",
+      "category": "account",
+      "tags": [
+        "merge",
+        "duplicate"
+      ],
+      "date": "2026-01-14",
+      "helpful": 9,
+      "views": 190
+    },
+    {
+      "id": 11,
+      "question": "Why was I logged out automatically?",
+      "answer": "Sessions expire after 30 days of inactivity, or immediately if you change your password, for your security.",
+      "category": "account",
+      "tags": [
+        "session",
+        "logout"
+      ],
+      "date": "2026-01-15",
+      "helpful": 12,
+      "views": 220
+    },
+    {
+      "id": 12,
+      "question": "What payment methods are accepted?",
+      "answer": "We accept all major credit and debit cards, UPI, net banking, and popular wallets at checkout.",
+      "category": "payment",
+      "tags": [
+        "billing",
+        "cards"
+      ],
+      "date": "2026-01-16",
+      "helpful": 33,
+      "views": 610
+    },
+    {
+      "id": 13,
+      "question": "How do I update my billing information?",
+      "answer": "Go to Billing under Account Settings, select Update Payment Method, and enter your new card details.",
+      "category": "payment",
+      "tags": [
+        "billing",
+        "update"
+      ],
+      "date": "2026-01-17",
+      "helpful": 20,
+      "views": 350
+    },
+    {
+      "id": 14,
+      "question": "Why did my payment fail?",
+      "answer": "Payments usually fail due to insufficient funds, an expired card, or your bank blocking the transaction. Try another method or contact your bank.",
+      "category": "payment",
+      "tags": [
+        "failed",
+        "error"
+      ],
+      "date": "2026-01-18",
+      "helpful": 28,
+      "views": 500
+    },
+    {
+      "id": 15,
+      "question": "How do I request a refund?",
+      "answer": "Open a support ticket with your order ID within 14 days of purchase and our billing team will review your request.",
+      "category": "payment",
+      "tags": [
+        "refund",
+        "money back"
+      ],
+      "date": "2026-01-19",
+      "helpful": 45,
+      "views": 860
+    },
+    {
+      "id": 16,
+      "question": "Where can I find my invoices?",
+      "answer": "All invoices are available under Billing History in your account, and can be downloaded as PDF.",
+      "category": "payment",
+      "tags": [
+        "invoice",
+        "receipt"
+      ],
+      "date": "2026-01-20",
+      "helpful": 17,
+      "views": 300
+    },
+    {
+      "id": 17,
+      "question": "How do I track my order?",
+      "answer": "Go to Orders in your account dashboard and click Track on any order to see real-time status updates.",
+      "category": "orders",
+      "tags": [
+        "tracking",
+        "status"
+      ],
+      "date": "2026-01-21",
+      "helpful": 37,
+      "views": 700
+    },
+    {
+      "id": 18,
+      "question": "Can I cancel an order after placing it?",
+      "answer": "Orders can be cancelled within 1 hour of placement from the Orders page. After that, contact support directly.",
+      "category": "orders",
+      "tags": [
+        "cancel",
+        "order"
+      ],
+      "date": "2026-01-22",
+      "helpful": 22,
+      "views": 400
+    },
+    {
+      "id": 19,
+      "question": "How do I change my delivery address?",
+      "answer": "If the order hasn't shipped yet, edit the address from Orders > Order Details > Edit Address.",
+      "category": "orders",
+      "tags": [
+        "address",
+        "delivery"
+      ],
+      "date": "2026-01-23",
+      "helpful": 14,
+      "views": 260
+    },
+    {
+      "id": 20,
+      "question": "What is your return policy?",
+      "answer": "Items can be returned within 30 days in original condition. Start a return from the Orders page to get a prepaid label.",
+      "category": "orders",
+      "tags": [
+        "return",
+        "policy"
+      ],
+      "date": "2026-01-24",
+      "helpful": 30,
+      "views": 540
+    },
+    {
+      "id": 21,
+      "question": "Why is my order delayed?",
+      "answer": "Delays are usually caused by high demand or courier disruptions. Check the tracking page for the latest estimated delivery date.",
+      "category": "orders",
+      "tags": [
+        "delay",
+        "shipping"
+      ],
+      "date": "2026-01-25",
+      "helpful": 19,
+      "views": 320
+    },
+    {
+      "id": 22,
+      "question": "The website isn't loading properly, what should I do?",
+      "answer": "Try clearing your browser cache, disabling extensions, or switching browsers. If the issue continues, let support know your browser and OS.",
+      "category": "technical",
+      "tags": [
+        "bug",
+        "loading"
+      ],
+      "date": "2026-01-26",
+      "helpful": 25,
+      "views": 470
+    },
+    {
+      "id": 23,
+      "question": "I found a bug — how do I report it?",
+      "answer": "Use the Contact Support form and select Bug Report as the subject. Include steps to reproduce and a screenshot if possible.",
+      "category": "technical",
+      "tags": [
+        "bug report",
+        "feedback"
+      ],
+      "date": "2026-01-27",
+      "helpful": 16,
+      "views": 280
+    },
+    {
+      "id": 24,
+      "question": "Does Beacon work offline?",
+      "answer": "Yes, previously visited pages are cached and remain viewable offline thanks to the built-in service worker.",
+      "category": "technical",
+      "tags": [
+        "offline",
+        "pwa"
+      ],
+      "date": "2026-01-28",
+      "helpful": 13,
+      "views": 240
+    },
+    {
+      "id": 25,
+      "question": "How do I install Beacon as an app?",
+      "answer": "On supported browsers, click the Install icon in the address bar, or use Add to Home Screen on mobile.",
+      "category": "technical",
+      "tags": [
+        "install",
+        "pwa"
+      ],
+      "date": "2026-01-29",
+      "helpful": 11,
+      "views": 210
+    },
+    {
+      "id": 26,
+      "question": "Can I use keyboard shortcuts?",
+      "answer": "Press / to jump to search, Esc to close any open panel, and Ctrl+K to open the AI assistant.",
+      "category": "technical",
+      "tags": [
+        "shortcuts",
+        "keyboard"
+      ],
+      "date": "2026-01-30",
+      "helpful": 8,
+      "views": 150
+    },
+    {
+      "id": 27,
+      "question": "What data does Beacon collect about me?",
+      "answer": "We only collect what's needed to run your account: your email, basic usage analytics, and support conversations. See our Privacy Policy for details.",
+      "category": "privacy",
+      "tags": [
+        "data",
+        "gdpr"
+      ],
+      "date": "2026-02-01",
+      "helpful": 26,
+      "views": 430
+    },
+    {
+      "id": 28,
+      "question": "Can I download a copy of my data?",
+      "answer": "Yes, request a data export from Account Settings > Privacy, and we'll email you a download link within 48 hours.",
+      "category": "privacy",
+      "tags": [
+        "export",
+        "data"
+      ],
+      "date": "2026-02-02",
+      "helpful": 14,
+      "views": 250
+    },
+    {
+      "id": 29,
+      "question": "Do you sell my data to third parties?",
+      "answer": "No. We never sell personal data. Some anonymised analytics may be shared with service providers strictly to operate the platform.",
+      "category": "privacy",
+      "tags": [
+        "third party",
+        "data sale"
+      ],
+      "date": "2026-02-03",
+      "helpful": 29,
+      "views": 480
+    },
+    {
+      "id": 30,
+      "question": "How do I enable two-factor authentication?",
+      "answer": "Go to Account Settings > Security and turn on Two-Factor Authentication, then scan the QR code with an authenticator app.",
+      "category": "security",
+      "tags": [
+        "2fa",
+        "authentication"
+      ],
+      "date": "2026-02-04",
+      "helpful": 34,
+      "views": 590
+    },
+    {
+      "id": 31,
+      "question": "I think my account was hacked, what do I do?",
+      "answer": "Reset your password immediately, enable two-factor authentication, and contact support so we can review recent account activity.",
+      "category": "security",
+      "tags": [
+        "hacked",
+        "compromised"
+      ],
+      "date": "2026-02-05",
+      "helpful": 41,
+      "views": 710
+    },
+    {
+      "id": 32,
+      "question": "How do I see my active login sessions?",
+      "answer": "Visit Account Settings > Security > Active Sessions to view and revoke access from any device.",
+      "category": "security",
+      "tags": [
+        "sessions",
+        "devices"
+      ],
+      "date": "2026-02-06",
+      "helpful": 10,
+      "views": 190
+    },
+    {
+      "id": 33,
+      "question": "How can I contact support?",
+      "answer": "Use the Contact Support form on this page, chat with the assistant, or email us — we usually reply within one business day.",
+      "category": "support",
+      "tags": [
+        "contact",
+        "help"
+      ],
+      "date": "2026-02-07",
+      "helpful": 36,
+      "views": 660
+    },
+    {
+      "id": 34,
+      "question": "What are your support hours?",
+      "answer": "Our team is available Monday to Saturday, 9 AM to 8 PM IST. The AI assistant is available around the clock.",
+      "category": "support",
+      "tags": [
+        "hours",
+        "availability"
+      ],
+      "date": "2026-02-08",
+      "helpful": 12,
+      "views": 230
+    },
+    {
+      "id": 35,
+      "question": "Do you offer phone support?",
+      "answer": "Phone support is available for Pro and Enterprise plans. Everyone else can reach us via the contact form or chat.",
+      "category": "support",
+      "tags": [
+        "phone",
+        "priority"
+      ],
+      "date": "2026-02-09",
+      "helpful": 9,
+      "views": 170
+    }
+  ]
+}
